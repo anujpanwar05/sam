@@ -8,7 +8,7 @@ function App() {
         <nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
             <div class="container">
                 <a href="index.html" class="navbar-brand mr-lg-5">
-                    <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+                    <img src="./images/logo.png" alt="" class="logo-dark" height="18" />
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -70,7 +70,7 @@ function App() {
                     </div>
                     <div class="col-md-5 offset-md-2">
                         <div class="text-md-right mt-3 mt-md-0">
-                            <img src="assets/images/startup.svg" alt="" class="img-fluid" />
+                            <img src="./images/startup.svg" alt="" class="img-fluid" />
                         </div>
                     </div>
                 </div>
@@ -197,7 +197,7 @@ function App() {
                 <div class="row mt-4">
                     <div class="col-lg-4">
                         <div class="demo-box text-center">
-                            <img src="assets/images/layouts/layout-1.png" alt="demo-img"
+                            <img src="./images/layouts/layout-1.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Vertical Layout</h5>
                         </div>
@@ -205,14 +205,14 @@ function App() {
 
                     <div class="col-lg-4">
                         <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-2.png" alt="demo-img"
+                            <img src="./images/layouts/layout-2.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Horizontal Layout</h5>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-3.png" alt="demo-img"
+                            <img src="./images/layouts/layout-3.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Detached Layout</h5>
                         </div>
@@ -223,14 +223,14 @@ function App() {
                     
                     <div class="col-lg-4">
                         <div class="demo-box text-center">
-                            <img src="assets/images/layouts/layout-5.png" alt="demo-img"
+                            <img src="./images/layouts/layout-5.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Light Sidenav Layout</h5>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-6.png" alt="demo-img"
+                            <img src="./images/layouts/layout-6.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Boxed Layout</h5>
                         </div>
@@ -238,7 +238,7 @@ function App() {
 
                     <div class="col-lg-4">
                         <div class="demo-box text-center mt-3 mt-lg-0">
-                            <img src="assets/images/layouts/layout-4.png" alt="demo-img"
+                            <img src="./images/layouts/layout-4.png" alt="demo-img"
                                 class="img-fluid shadow-sm rounded"/>
                             <h5 class="mt-3 f-17">Semi Dark Layout</h5>
                         </div>
@@ -261,7 +261,7 @@ function App() {
                 </div>
                 <div class="row mt-2 py-5 align-items-center">
                     <div class="col-lg-5">
-                        <img src="assets/images/features-1.svg" class="img-fluid" alt=""/>
+                        <img src="./images/features-1.svg" class="img-fluid" alt=""/>
                     </div>
                     <div class="col-lg-6 offset-lg-1">
                         <h3 class="font-weight-normal">Inbuilt applications and pages</h3>
@@ -295,7 +295,7 @@ function App() {
 
                     </div>
                     <div class="col-lg-5 offset-lg-1">
-                        <img src="assets/images/features-2.svg" class="img-fluid" alt=""/>
+                        <img src="./images/features-2.svg" class="img-fluid" alt=""/>
                     </div>
                 </div>
 
@@ -506,7 +506,7 @@ function App() {
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img src="assets/images/logo.png" alt="" class="logo-dark" height="18" />
+                        <img src="./images/logo.png" alt="" class="logo-dark" height="18" />
                         <p class="text-white-50 mt-4">Hyper makes it easier to build better websites with
                             <br/> great speed. Save hundreds of hours of design
                             <br/> and development by using it.</p>
