@@ -1,0 +1,4 @@
+body[data-layout=topnav] .content-page {
+    margin-left: 0!important;
+    padding: 0 0 60px 0;
+}
