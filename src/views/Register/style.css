@@ -1,0 +1,8 @@
+.authentication-bg {
+    background-image: url(../../images/bg-pattern-light.svg);
+    background-size: cover;
+    background-position: center;
+    /* margin: 0px; */
+    display: inline-block;
+    width: 100%;
+}

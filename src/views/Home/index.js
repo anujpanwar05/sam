@@ -38,6 +38,12 @@ export default class Home extends Component {
                         <li class="nav-item mx-lg-1">
                             <a class="nav-link" href="">Contact</a>
                         </li>
+						<li class="nav-item mx-lg-1">
+                            <Link to={`/register`} className="nav-link">Sign Up</Link>
+                        </li>
+						<li class="nav-item mx-lg-1">
+							<Link to={`/login`} className="nav-link">Log In</Link>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto align-items-center">
                         <li class="nav-item mr-0">
