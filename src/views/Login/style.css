@@ -6,3 +6,15 @@
     display: inline-block;
     width: 100%;
 }
+.error {
+    color: red;
+    /* margin-left: 15px; */
+    width: 100%;
+    /* margin-top: 2px; */
+    display: block;
+}
+.loginmessage {
+    text-align: center;
+    color: red;
+    display: block;
+}

@@ -2,12 +2,14 @@
     background-image: url(../../images/bg-pattern-light.svg);
     background-size: cover;
     background-position: center;
-}
-.authentication-bg {
-    background-image: url(../../images/bg-pattern-light.svg);
-    background-size: cover;
-    background-position: center;
     /* margin: 0px; */
     display: inline-block;
     width: 100%;
+}
+.error {
+    color: red;
+    /* margin-left: 15px; */
+    width: 100%;
+    /* margin-top: 2px; */
+    display: block;
 }
