@@ -75,7 +75,7 @@ export default class Login extends Component {
 		  password:this.state.password,
 		};
 	   
-		axios.post('http://13.127.100.171/login.php',obj)
+		axios.post('http://13.233.64.4/login.php',obj)
 		.then(res=> {
 			let result = res.data;
 			if(result.type=='success'){
