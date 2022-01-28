@@ -126,9 +126,7 @@ export default class Register extends Component {
 	<>	
 	<div className="application">
 		<Helmet>
-			<meta charSet="utf-8" />
-			<title>My Title</title>
-			<link rel="canonical" href="http://example.com/example" />
+			<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 		</Helmet>
 		...
 	</div>
