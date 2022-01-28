@@ -96,7 +96,7 @@ export default class Register extends Component {
 			  password:this.state.password,
 			};
 		   
-			axios.post('http://localhost/samreact/insert.php',obj)
+			axios.post('http://localhost/samreact/register.php',obj)
 			.then(res=> {
 				let result = res.data;
 				if(result.type=='success'){
