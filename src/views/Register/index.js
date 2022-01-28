@@ -123,10 +123,7 @@ export default class Register extends Component {
 	}
   render() {
     return (
-	<>		
-	<Helmet>
-		<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-	</Helmet>
+	<>			
 	<div className="authentication-bg">
 	<div className="account-pages mt-5 mb-5">
             <div className="container">
