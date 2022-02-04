@@ -17,7 +17,7 @@ export default class Home extends Component {
 		const obj ={
 		  action:'get_members',
 		};
-        axios.post('http://localhost/samreact/api.php',obj)
+        axios.post('https://main.d3qlg16b3r1qxm.amplifyapp.com/api/api.php',obj)
 		.then(res=> {
 			let result = res.data;
 			this.setState({

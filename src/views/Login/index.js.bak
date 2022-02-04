@@ -77,7 +77,7 @@ export default class Login extends Component {
 		  password:this.state.password,
 		};
 	   
-		axios.post('http://localhost/samreact/login.php',obj)
+		axios.post('https://main.d3qlg16b3r1qxm.amplifyapp.com/api/login.php',obj)
 		.then(res=> {
 			let result = res.data;
 			if(result.type=='success'){
