@@ -96,7 +96,7 @@ export default class Register extends Component {
 			  password:this.state.password,
 			};
 		   
-			axios.post('http://13.233.64.4/register.php',obj)
+			axios.post('https://main.d3qlg16b3r1qxm.amplifyapp.com/api/register.php',obj)
 			.then(res=> {
 				let result = res.data;
 				if(result.type=='success'){

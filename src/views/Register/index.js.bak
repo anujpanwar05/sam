@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import {MyContext} from '../../contexts/MyContext';
 import axios from 'axios';
-import {Helmet} from "react-helmet";
 
 //import Registerform from './Registerform';
 
@@ -97,7 +96,7 @@ export default class Register extends Component {
 			  password:this.state.password,
 			};
 		   
-			axios.post('http://13.127.100.171/register.php',obj)
+			axios.post('http://localhost/samreact/register.php',obj)
 			.then(res=> {
 				let result = res.data;
 				if(result.type=='success'){

@@ -1,9 +1,40 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Navigate } from "react-router-dom";
 import "./style.css";
-
+import axios from 'axios';
 
 export default class Home extends Component {
+	constructor(props) {
+        super(props);
+		
+        this.state = {
+            members: [],
+            DataisLoaded: false
+        };
+    }
+	componentDidMount() {
+		
+		const obj ={
+		  action:'get_members',
+		};
+        axios.post('https://main.d3qlg16b3r1qxm.amplifyapp.com/api/api.php',obj)
+		.then(res=> {
+			let result = res.data;
+			this.setState({
+                    members: result.members,
+                    DataisLoaded: true
+                });
+			
+		})
+		.catch(error => {
+		  console.log(error.response)
+	  });
+    }
+	logOut= () => {
+		sessionStorage.clear();
+
+		return (<Navigate to="/login" />);
+	}
   render() {
     return (
 	<>
@@ -226,11 +257,14 @@ export default class Home extends Component {
 										<span>Lock Screen</span>
 										</a>
 										
-										<a href="javascript:void(0);" className="dropdown-item notify-item">
+										<a onClick={this.logOut} href="javascript:void(0);" className="dropdown-item notify-item">
 										<i className="mdi mdi-logout mr-1"></i>
 										<span>Logout</span>
 										</a>
 									</div>
+								</li>
+								<li className="logout-li">
+									<a onClick={this.logOut} className="nav-link logout-link" href="#">Logout</a>
 								</li>
 							</ul>
 							<a className="navbar-toggle"  data-toggle="collapse" data-target="#topnav-menu-content">
@@ -594,514 +628,363 @@ export default class Home extends Component {
 											<li className="breadcrumb-item active">Projects</li>
 										</ol>
 									</div>
-									<h4 className="page-title">Projects</h4>
+									<h4 className="page-title">Peoples</h4>
 								</div>
 							</div>
-						</div>
-						
-						<div className="row mb-2">
-							<div className="col-sm-4">
-								<a href="apps-projects-add.html" className="btn btn-danger btn-rounded mb-3"><i className="mdi mdi-plus"></i> Create Project</a>
-							</div>
-							<div className="col-sm-8">
-								<div className="text-sm-right">
-									<div className="btn-group mb-3">
-										<button type="button" className="btn btn-primary">All</button>
-									</div>
-									<div className="btn-group mb-3 ml-1">
-										<button type="button" className="btn btn-light">Ongoing</button>
-										<button type="button" className="btn btn-light">Finished</button>
-									</div>
-									<div className="btn-group mb-3 ml-2 d-none d-sm-inline-block">
-										<button type="button" className="btn btn-secondary"><i className="dripicons-view-apps"></i></button>
-									</div>
-									<div className="btn-group mb-3 d-none d-sm-inline-block">
-										<button type="button" className="btn btn-link text-muted"><i className="dripicons-checklist"></i></button>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-						
-						<div className="row">
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									<div className="card-body">
-										<div className="dropdown card-widgets">
-											<a href="#" className="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-											<i className="dripicons-dots-3"></i>
-											</a>
-											<div className="dropdown-menu dropdown-menu-right">
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-pencil mr-1"></i>Edit</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-delete mr-1"></i>Delete</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-email-outline mr-1"></i>Invite</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-exit-to-app mr-1"></i>Leave</a>
-											</div>
-										</div>
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">App design and development</a>
-										</h4>
-										<div className="badge badge-success mb-3">Finished</div>
-										<p className="text-muted font-13 mb-3">With supporting text below as a natural lead-in to additional contenposuere erat a ante...<a href="javascript:void(0);" className="font-weight-bold text-muted">view more</a>
-										</p>
-										
-										<p className="mb-1">
-											<span className="pr-2 text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-format-list-bulleted-type text-muted"></i>
-											<b>21</b> Tasks
-											</span>
-											<span className="text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-comment-multiple-outline text-muted"></i>
-											<b>741</b> Comments
-											</span>
-										</p>
-										<div>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-6.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-7.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-8.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" className="d-inline-block text-muted font-weight-bold ml-2">
-											+7 more
-											</a>
-										</div>
-									</div>
-									
-									<ul className="list-group list-group-flush">
-										<li className="list-group-item p-3">
-											
-											<p className="mb-2 font-weight-bold">Progress <span className="float-right">100%</span></p>
-											<div className="progress progress-sm">
-												<div className="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{"width": "100%"}}>
-												</div>
-												
-											</div>
-											
-										</li>
-									</ul>
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									<div className="card-body">
-										<div className="dropdown card-widgets">
-											<a href="#" className="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-											<i className="dripicons-dots-3"></i>
-											</a>
-											<div className="dropdown-menu dropdown-menu-right">
-											
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-pencil mr-1"></i>Edit</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-delete mr-1"></i>Delete</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-email-outline mr-1"></i>Invite</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-exit-to-app mr-1"></i>Leave</a>
-											</div>
-										</div>
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Coffee detail page - Main Page</a>
-										</h4>
-										<div className="badge badge-secondary mb-3">Ongoing</div>
-										<p className="text-muted font-13 mb-3">This card has supporting text below as a natural lead-in to additional content is a little bit longer...<a href="javascript:void(0);" className="font-weight-bold text-muted">view more</a>
-										</p>
-										
-										<p className="mb-1">
-											<span className="pr-2 text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-format-list-bulleted-type text-muted"></i>
-											<b>81</b> Tasks
-											</span>
-											<span className="text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-comment-multiple-outline text-muted"></i>
-											<b>103</b> Comments
-											</span>
-										</p>
-										<div>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-1.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-2.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-3.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" className="d-inline-block text-muted font-weight-bold ml-2">
-											+3 more
-											</a>
-										</div>
-									</div>
-									
-									<ul className="list-group list-group-flush">
-										<li className="list-group-item p-3">
-											
-											<p className="mb-2 font-weight-bold">Progress <span className="float-right">28%</span></p>
-											<div className="progress progress-sm">
-												<div className="progress-bar" role="progressbar" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100" style={{"width": "28%"}}>
-												</div>
-												
-											</div>
-											
-										</li>
-									</ul>
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									<div className="card-body">
-										<div className="dropdown card-widgets">
-											<a href="#" className="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-											<i className="dripicons-dots-3"></i>
-											</a>
-											<div className="dropdown-menu dropdown-menu-right">
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-pencil mr-1"></i>Edit</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-delete mr-1"></i>Delete</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-email-outline mr-1"></i>Invite</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-exit-to-app mr-1"></i>Leave</a>
-											</div>
-										</div>
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Poster illustation design</a>
-										</h4>
-										<div className="badge badge-secondary mb-3">Ongoing</div>
-										<p className="text-muted font-13 mb-3">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid...<a href="javascript:void(0);" className="font-weight-bold text-muted">view more</a>
-										</p>
-										
-										<p className="mb-1">
-											<span className="pr-2 text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-format-list-bulleted-type text-muted"></i>
-											<b>12</b> Tasks
-											</span>
-											<span className="text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-comment-multiple-outline text-muted"></i>
-											<b>482</b> Comments
-											</span>
-										</p>
-										<div>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-4.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-5.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-										</div>
-									</div>
-									
-									<ul className="list-group list-group-flush">
-										<li className="list-group-item p-3">
-											
-											<p className="mb-2 font-weight-bold">Progress <span className="float-right">63%</span></p>
-											<div className="progress progress-sm">
-												<div className="progress-bar" role="progressbar" aria-valuenow="63" aria-valuemin="0" aria-valuemax="100" style={{"width": "63%"}}>
-												</div>
-												
-											</div>
-											
-										</li>
-									</ul>
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									<div className="card-body">
-										<div className="dropdown card-widgets">
-											<a href="#" className="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-											<i className="dripicons-dots-3"></i>
-											</a>
-											<div className="dropdown-menu dropdown-menu-right">
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-pencil mr-1"></i>Edit</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-delete mr-1"></i>Delete</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-email-outline mr-1"></i>Invite</a>
-												
-												<a href="javascript:void(0);" className="dropdown-item"><i className="mdi mdi-exit-to-app mr-1"></i>Leave</a>
-											</div>
-										</div>
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Drinking bottle graphics </a>
-										</h4>
-										<div className="badge badge-success mb-3">Finished</div>
-										<p className="text-muted font-13 mb-3">Some quick example text to build on the card title and make up the bulk of the card's content...<a href="javascript:void(0);" className="font-weight-bold text-muted">view more</a>
-										</p>
-										
-										<p className="mb-1">
-											<span className="pr-2 mb-2 d-inline-block text-nowrap">
-											<i className="mdi mdi-format-list-bulleted-type text-muted"></i>
-											<b>50</b> Tasks
-											</span>
-											<span className="text-nowrap mb-2 d-inline-block">
-											<i className="mdi mdi-comment-multiple-outline text-muted"></i>
-											<b>208</b> Comments
-											</span>
-										</p>
-										<div>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-10.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-5.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-6.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" className="d-inline-block text-muted font-weight-bold ml-2">
-											+2 more
-											</a>
-										</div>
-									</div>
-									
-									<ul className="list-group list-group-flush">
-										<li className="list-group-item p-3">
-											
-											<p className="mb-2 font-weight-bold">Progress <span className="float-right">100%</span></p>
-											<div className="progress progress-sm">
-												<div className="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{"width": "100%"}}>
-												</div>
-												
-											</div>
-											
-										</li>
-									</ul>
-								</div>
-								
-							</div>
-							
-						</div>
-						
-						<div className="row">
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									
-									<img className="card-img-top" src="../images/projects/project-1.jpg" alt="project image cap"/>
-									<div className="card-img-overlay">
-										<div className="badge badge-secondary p-1">Ongoing</div>
-									</div>
-									<div className="card-body position-relative">
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Company logo design</a>
-										</h4>
-										
-										<p className="mb-3">
-											<span className="pr-2 text-nowrap">
-											<i className="mdi mdi-format-list-bulleted-type"></i>
-											<b>3</b> Tasks
-											</span>
-											<span className="text-nowrap">
-											<i className="mdi mdi-comment-multiple-outline"></i>
-											<b>104</b> Comments
-											</span>
-										</p>
-										<div className="mb-3">
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-3.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-5.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-9.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-										</div>
-										
-										<p className="mb-2 font-weight-bold">Progress <span className="float-right">45%</span></p>
-										<div className="progress progress-sm">
-											<div className="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={{"width": "45%"}}>
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									
-									<img className="card-img-top" src="../images/projects/project-2.jpg" alt="project image cap"/>
-									<div className="card-img-overlay">
-										<div className="badge badge-success p-1">Finished</div>
-									</div>
-									<div className="card-body position-relative">
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Landing page design - Home</a>
-										</h4>
-										
-										<p className="mb-3">
-											<span className="pr-2 text-nowrap">
-											<i className="mdi mdi-format-list-bulleted-type"></i>
-											<b>11</b> Tasks
-											</span>
-											<span className="text-nowrap">
-											<i className="mdi mdi-comment-multiple-outline"></i>
-											<b>254</b> Comments
-											</span>
-										</p>
-										<div className="mb-3">
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-10.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-5.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-7.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" className="d-inline-block text-muted font-weight-bold ml-2">
-											+2 more
-											</a>
-										</div>
-										
-										<p className="mb-2 font-weight-bold">Progress <span className="float-right">100%</span></p>
-										<div className="progress progress-sm">
-											<div className="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style={{"width": "100%"}}>
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									
-									<img className="card-img-top" src="../images/projects/project-3.jpg" alt="project image cap"/>
-									<div className="card-img-overlay">
-										<div className="badge badge-secondary p-1">Ongoing</div>
-									</div>
-									<div className="card-body position-relative">
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Product page redesign</a>
-										</h4>
-										
-										<p className="mb-3">
-											<span className="pr-2 text-nowrap">
-											<i className="mdi mdi-format-list-bulleted-type"></i>
-											<b>21</b> Tasks
-											</span>
-											<span className="text-nowrap">
-											<i className="mdi mdi-comment-multiple-outline"></i>
-											<b>668</b> Comments
-											</span>
-										</p>
-										<div className="mb-3">
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-6.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-7.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="James Anderson" className="d-inline-block">
-											<img src="../images/users/avatar-8.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" className="d-inline-block text-muted font-weight-bold ml-2">
-											+5 more
-											</a>
-										</div>
-										
-										<p className="mb-2 font-weight-bold">Progress <span className="float-right">71%</span></p>
-										<div className="progress progress-sm">
-											<div className="progress-bar" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style={{"width": "71%"}}>
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-								
-							</div>
-							
-							<div className="col-md-6 col-xl-3">
-								
-								<div className="card d-block">
-									
-									<img className="card-img-top" src="../images/projects/project-4.jpg" alt="project image cap"/>
-									<div className="card-img-overlay">
-										<div className="badge badge-secondary p-1">Ongoing</div>
-									</div>
-									<div className="card-body position-relative">
-										
-										<h4 className="mt-0">
-											<a href="apps-projects-details.html" className="text-title">Coffee detail page - Main Page</a>
-										</h4>
-										
-										<p className="mb-3">
-											<span className="pr-2 text-nowrap">
-											<i className="mdi mdi-format-list-bulleted-type"></i>
-											<b>18</b> Tasks
-											</span>
-											<span className="text-nowrap">
-											<i className="mdi mdi-comment-multiple-outline"></i>
-											<b>259</b> Comments
-											</span>
-										</p>
-										<div className="mb-3">
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mat Helme" className="d-inline-block">
-											<img src="../images/users/avatar-2.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-											<a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="Michael Zenaty" className="d-inline-block">
-											<img src="../images/users/avatar-3.jpg" className="rounded-circle avatar-xs" alt="friend"/>
-											</a>
-										</div>
-										
-										<p className="mb-2 font-weight-bold">Progress <span className="float-right">52%</span></p>
-										<div className="progress progress-sm">
-											<div className="progress-bar" role="progressbar" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100" style={{"width": "52%"}}>
-											</div>
-											
-										</div>
-										
-									</div>
-									
-								</div>
-								
-							</div>
-							
-						</div>
-						
-					</div>
-					
-				</div>
-				
+						</div>	
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <div id="products-datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div class="dataTables_length" id="products-datatable_length">
+                                                            <label>
+                                                                Display 
+                                                                <select class="custom-select custom-select-sm ml-1 mr-1">
+                                                                    <option value="10">10</option>
+                                                                    <option value="20">20</option>
+                                                                    <option value="-1">All</option>
+                                                                </select>
+                                                                customers
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6">
+                                                        <div id="products-datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="products-datatable"/></label></div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <table class="table table-centered table-striped dt-responsive nowrap w-100 dataTable no-footer dtr-inline" id="products-datatable" role="grid" aria-describedby="products-datatable_info" style={{"width": "1190px"}}>
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th style={{"width": "28.6px"}} class="dt-checkboxes-cell dt-checkboxes-select-all sorting_disabled" rowspan="1" colspan="1" data-col="0" aria-label="
+                                                                        &amp;nbsp;
+                                                                        ">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "175.8px"}} aria-label="Customer: activate to sort column ascending">Customer</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "124.8px"}} aria-label="Phone: activate to sort column ascending">Phone</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "183.8px"}} aria-label="Email: activate to sort column ascending">Email</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "111.8px"}} aria-label="Location: activate to sort column ascending">Location</th>
+                                                                    <th class="sorting_asc" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "99.8px"}} aria-sort="ascending" aria-label="Create Date: activate to sort column descending">Create Date</th>
+                                                                    <th class="sorting" tabindex="0" aria-controls="products-datatable" rowspan="1" colspan="1" style={{"width": "57.8px"}} aria-label="Status: activate to sort column ascending">Status</th>
+                                                                    <th style={{"width": "74.8px"}} class="sorting_disabled" rowspan="1" colspan="1" aria-label="Action">Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+															{(this.state.members.map(member => (
+                                                                <tr role="row" class="odd">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-2.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">{member.name}</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        078 5054 8877
+                                                                    </td>
+                                                                    <td>
+																	{member.email}
+                                                                    </td>
+                                                                    <td>
+                                                                        United States
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        03/24/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-danger-lighten">Blocked</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+															)))}
+                                                                <tr role="row" class="even">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-10.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Dean Smithies</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        077 6157 4248
+                                                                    </td>
+                                                                    <td>
+                                                                        deanes@dayrep.com
+                                                                    </td>
+                                                                    <td>
+                                                                        Singapore
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        04/09/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-9.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Anna Ciantar</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        (216) 76 298 896
+                                                                    </td>
+                                                                    <td>
+                                                                        annac@hotmai.us
+                                                                    </td>
+                                                                    <td>
+                                                                        Philippines
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        05/06/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="even">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-1.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Labeeb Ghali</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        050 414 8778
+                                                                    </td>
+                                                                    <td>
+                                                                        labebswad@teleworm.us
+                                                                    </td>
+                                                                    <td>
+                                                                        United Kingdom
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        06/19/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-3.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Kathryn S. Collier</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        828-216-2190
+                                                                    </td>
+                                                                    <td>
+                                                                        collier@jourrapide.com
+                                                                    </td>
+                                                                    <td>
+                                                                        Canada
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        06/30/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-danger-lighten">Blocked</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="even">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-4.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Paul J. Friend</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        937-330-1634
+                                                                    </td>
+                                                                    <td>
+                                                                        pauljfrnd@jourrapide.com
+                                                                    </td>
+                                                                    <td>
+                                                                        New York
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        07/07/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-5.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Zara Raws</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        (02) 75 150 655
+                                                                    </td>
+                                                                    <td>
+                                                                        austin@dayrep.com
+                                                                    </td>
+                                                                    <td>
+                                                                        Germany
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        07/15/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="even">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-7.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Jenny C. Gero</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        078 7173 9261
+                                                                    </td>
+                                                                    <td>
+                                                                        jennygero@teleworm.us
+                                                                    </td>
+                                                                    <td>
+                                                                        Lesotho
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        08/02/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-danger-lighten">Blocked</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="odd">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-8.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Edward Roseby</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        078 6013 3854
+                                                                    </td>
+                                                                    <td>
+                                                                        edwardR@armyspy.com
+                                                                    </td>
+                                                                    <td>
+                                                                        Monaco
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        08/23/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr role="row" class="even">
+                                                                    <td class="dt-checkboxes-cell dtr-control" tabindex="0">
+                                                                        <div class="custom-control custom-checkbox"><input type="checkbox" class="custom-control-input dt-checkboxes"/><label class="custom-control-label">&nbsp;</label></div>
+                                                                    </td>
+                                                                    <td class="table-user">
+                                                                        <img src="../images/users/avatar-6.jpg" alt="table-user" class="mr-2 rounded-circle"/>
+                                                                        <a href="javascript:void(0);" class="text-body font-weight-semibold">Annette P. Kelsch</a>
+                                                                    </td>
+                                                                    <td>
+                                                                        (+15) 73 483 758
+                                                                    </td>
+                                                                    <td>
+                                                                        annette@email.net
+                                                                    </td>
+                                                                    <td>
+                                                                        India
+                                                                    </td>
+                                                                    <td class="sorting_1">
+                                                                        09/05/2018
+                                                                    </td>
+                                                                    <td>
+                                                                        <span class="badge badge-success-lighten">Active</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
+                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-5">
+                                                        <div class="dataTables_info" id="products-datatable_info" role="status" aria-live="polite">Showing customers 1 to 10 of 12</div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-7">
+                                                        <div class="dataTables_paginate paging_simple_numbers" id="products-datatable_paginate">
+                                                            <ul class="pagination pagination-rounded">
+                                                                <li class="paginate_button page-item previous disabled" id="products-datatable_previous"><a href="#" aria-controls="products-datatable" data-dt-idx="0" tabindex="0" class="page-link"><i class="mdi mdi-chevron-left"></i></a></li>
+                                                                <li class="paginate_button page-item active"><a href="#" aria-controls="products-datatable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                                <li class="paginate_button page-item "><a href="#" aria-controls="products-datatable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                                                <li class="paginate_button page-item next" id="products-datatable_next"><a href="#" aria-controls="products-datatable" data-dt-idx="3" tabindex="0" class="page-link"><i class="mdi mdi-chevron-right"></i></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>					
+					</div>					
+				</div>				
 				<footer className="footer">
 					<div className="container-fluid">
 						<div className="row">

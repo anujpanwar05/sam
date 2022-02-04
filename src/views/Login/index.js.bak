@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Navigate } from "react-router-dom";
+
 import "./style.css";
 import axios from 'axios';
 
@@ -16,6 +17,7 @@ export default class Login extends Component {
 		emailError:'',
 		passwordError:'',
 		loginError:'',
+		isLoggedIn:false,
 		}
 	}
 	onChangeEmail(e){
@@ -75,11 +77,12 @@ export default class Login extends Component {
 		  password:this.state.password,
 		};
 	   
-		axios.post('http://13.127.100.171/login.php',obj)
+		axios.post('http://localhost/samreact/login.php',obj)
 		.then(res=> {
 			let result = res.data;
 			if(result.type=='success'){
 				this.setState({loginError:'Login Successful'});
+				this.setState({isLoggedIn:true});
 				sessionStorage.setItem('userData',JSON.stringify(result.user));
 			}else{
 				this.setState({loginError:'Email or Password not correct'});
@@ -99,6 +102,10 @@ export default class Login extends Component {
 	}  
 	}
   render() {
+	  let login = sessionStorage.getItem('userData');
+	  if(this.state.isLoggedIn === true || sessionStorage.getItem('myData')!=''){
+            //return (<Navigate to="/people" />);
+        }
     return (
 	<>
 	<div className="authentication-bg">
