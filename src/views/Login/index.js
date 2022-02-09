@@ -104,7 +104,7 @@ export default class Login extends Component {
   render() {
 	  let login = sessionStorage.getItem('userData');
 	  if(this.state.isLoggedIn === true || sessionStorage.getItem('myData')!=''){
-            //return (<Navigate to="/people" />);
+            return (<Navigate to="/people" />);
         }
     return (
 	<>
